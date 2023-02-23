@@ -20,6 +20,10 @@ Os códigos presentes neste repositório foram baseados na playlist de vídeos d
 
 Créditos ao canal "Programming with Mosh" pelo conteúdo ensinado e utilizado como base para os códigos presentes neste repositório.
 
+# Projeto Final da Disciplina Arquitetura de Sistemas Digitais
+
+Neste repositório se encontra o projeto [Verificador de Matrículas](verifier_registrations.asm) feito para a disciplina Arquitetura de Sistemas Digitais na Universidade Federal de Campina Grande (UFCG), curso de Engenharia Elétrica. O objetivo desse programa é fazer um verificador de matrículas dos alunos da UFCG. A partir de uma matrícula digitada, verificar se ela existe e a quem pertence.
+
 ## Contribuições 
 
 Sinta-se à vontade para contribuir com este repositório, adicionando novos códigos ou melhorando os já existentes. Basta abrir uma "Pull Request" com sua contribuição.
