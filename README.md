@@ -1,29 +1,77 @@
-# Repositório de Códigos Introdutórios em Assembly
+# Assembly com MARS
 
-Este repositório contém códigos de exemplo de Assembly, utilizando o software MARS.
+Exemplos didáticos de Assembly MIPS para estudar instruções, entrada e saída, operações aritméticas, funções, desvios, laços, arrays e números de ponto flutuante. Os arquivos são programas independentes e seguem uma sequência introdutória.
 
-Assembly é uma linguagem de programação de baixo nível, que utiliza uma sintaxe de mnemônicos para representar instruções de máquina para o processador. Em outras palavras, ele é o intermediário entre o código fonte e a linguagem binária compreendida pelo processador.
+## Como executar
 
-Cada instrução em Assembly corresponde a uma única instrução de máquina, o que torna a linguagem mais rápida e eficiente em termos de recursos do que as linguagens de programação de alto nível, como o Python ou o Java. No entanto, o Assembly também é muito mais complexo e difícil de ser escrito e mantido, especialmente para programas maiores.
+1. Instale o Java e baixe o [MARS 4.5](https://dpetersanderson.github.io/MARS/).
+2. Abra o arquivo `.asm` desejado no MARS.
+3. Selecione **Run > Assemble** e depois **Run > Go**.
+4. Para exemplos que recebem dados, digite a entrada no console do simulador.
 
-Devido à sua natureza de baixo nível, o Assembly é frequentemente utilizado em sistemas embarcados, drivers de dispositivos e outros sistemas em que a eficiência é uma preocupação crítica. Além disso, ele também é útil para a depuração de problemas de hardware e para a otimização de performance em sistemas.
+Cada arquivo pode ser aberto e executado individualmente. Os exemplos usam serviços de sistema do MARS para ler entradas e exibir resultados.
 
-## Software MARS
+## Roteiro de exemplos
 
-Para usar os códigos presentes neste repositório, é necessário ter o software MARS instalado em sua máquina. O link para download do software pode ser encontrado aqui:
-[Download MARS](http://courses.missouristate.edu/KenVollmar/mars/download.htm).
+### Fundamentos e operações
 
-## Códigos de Exemplo
+| Arquivo | Assunto |
+| --- | --- |
+| [01 — Hello Assembly](assembly-introduction/01_hello_assembly.asm) | Exibir uma mensagem |
+| [02 — Caractere](assembly-introduction/02_printing_character.asm) | Exibir um caractere |
+| [03 — Inteiro](assembly-introduction/03_printing_integer.asm) | Exibir um inteiro |
+| [04 — Float](assembly-introduction/04_printing_float.asm) | Exibir um número `float` |
+| [05 — Double](assembly-introduction/05_printing_double.asm) | Exibir um número `double` |
+| [06 — Soma](assembly-introduction/06_adding_integers.asm) | Somar inteiros |
+| [07 — Subtração](assembly-introduction/07_subtracting_integers.asm) | Subtrair inteiros |
+| [08 — Multiplicação](assembly-introduction/08_multiplying_integers.asm) | Multiplicar inteiros |
+| [09 — Multiplicação com `mult`](assembly-introduction/09_multiplying_integers.asm) | Usar os registradores `HI` e `LO` |
+| [10 — Deslocamento de bits](assembly-introduction/10_multiplying_integers.asm) | Multiplicar por deslocamento |
+| [11 — Divisão](assembly-introduction/11_dividing_integers.asm) | Dividir inteiros |
+| [12 — Quociente e resto](assembly-introduction/12_dividing_integers.asm) | Usar `mflo` e `mfhi` |
 
-Os códigos presentes neste repositório foram baseados na playlist de vídeos do canal no YouTube "Programming with Mosh". Link para a playlist:
-[Programming with Mosh - Assembly Language with MARS](https://www.youtube.com/playlist?list=PL5b07qlmA3P6zUdDf-o97ddfpvPFuNa5A)
+### Funções e entrada de dados
 
-Créditos ao canal "Programming with Mosh" pelo conteúdo ensinado e utilizado como base para os códigos presentes neste repositório.
+| Arquivo | Assunto |
+| --- | --- |
+| [13 — Funções](assembly-introduction/13_introduction_to_functions.asm) | Chamar uma função |
+| [14 — Argumentos e retorno](assembly-introduction/14_introduction_to_functions.asm) | Passar valores entre funções |
+| [15 — Registradores e pilha](assembly-introduction/15_registers_stack.asm) | Preservar um registrador na pilha |
+| [16 — Funções aninhadas](assembly-introduction/16_nested_procedures.asm) | Fazer chamadas aninhadas |
+| [17 — Entrada de inteiros](assembly-introduction/17_input_integers.asm) | Ler um inteiro |
+| [18a — Entrada de float](assembly-introduction/18_input_float.asm) | Ler um `float` |
+| [18b — Entrada de double](assembly-introduction/18_input_double.asm) | Ler um `double` |
+| [19 — Entrada de texto](assembly-introduction/19_input_string.asm) | Ler e exibir uma string |
 
-## Projeto Final da Disciplina Arquitetura de Sistemas Digitais
+### Controle de fluxo, arrays e ponto flutuante
 
-Neste repositório se encontra o projeto [Verificador de Matrículas](verifier_registrations.asm) feito para a disciplina Arquitetura de Sistemas Digitais na Universidade Federal de Campina Grande (UFCG), curso de Engenharia Elétrica. O objetivo desse programa é fazer um verificador de matrículas dos alunos da UFCG. A partir de uma matrícula digitada, verificar se ela existe e a quem pertence.
+| Arquivo | Assunto |
+| --- | --- |
+| [20 — Comparação e desvio](assembly-introduction/20_if_statements_branching.asm) | Comparar dois inteiros |
+| [21 — Comparação com `slt`](assembly-introduction/21_number_less_than_another.asm) | Comparar valores inteiros |
+| [22 — Desvios condicionais](assembly-introduction/22_branching_pseudo_instructions.asm) | Usar pseudoinstruções de desvio |
+| [23 — Laço `while`](assembly-introduction/23_while_loop.asm) | Repetir instruções com um contador |
+| [24 — Arrays](assembly-introduction/24_arrays.asm) | Armazenar valores em um array |
+| [25 — Percorrer arrays](assembly-introduction/25_printing_arrays_in_loop.asm) | Ler valores em um laço |
+| [26 — Inicialização de arrays](assembly-introduction/26_array_initializer.asm) | Inicializar e percorrer um array |
+| [27 — Ponto flutuante](assembly-introduction/27_floating_point_numbers.asm) | Somar valores `double` |
+| [28 — Operações com ponto flutuante](assembly-introduction/28_floating_point_operations.asm) | Multiplicar e dividir valores `double` |
+| [29 — Condição com ponto flutuante](assembly-introduction/29_if_statements_if_true.asm) | Comparar valores `float` |
 
-## Contribuições 
+## Projeto: verificador de matrículas
 
-Sinta-se à vontade para contribuir com este repositório, adicionando novos códigos ou melhorando os já existentes. Basta abrir uma "Pull Request" com sua contribuição.
+O arquivo [`verifier_registrations.asm`](verifier_registrations.asm) demonstra validação de entrada, busca em arrays e sub-rotinas. Para manter o exemplo adequado a um repositório público, os registros usados no código são fictícios.
+
+Experimente as matrículas `123456789`, `198765432`, `123450001` e `134567890`. Digite `0` para encerrar.
+
+## Créditos
+
+Os exemplos introdutórios foram inspirados pela playlist [Assembly Language with MARS, de Programming with Mosh](https://www.youtube.com/playlist?list=PL5b07qlmA3P6zUdDf-o97ddfpvPFuNa5A). Este repositório reúne exercícios de estudo e não é um material oficial do canal.
+
+## Contribuições
+
+Sugestões e correções são bem-vindas. Abra uma issue para discutir uma mudança ou envie um pull request com a descrição do ajuste.
+
+## Licença
+
+Distribuído sob a licença [MIT](LICENSE).
