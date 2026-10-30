@@ -6,7 +6,7 @@
 	# adiciona a constante 2000 utilizando soma de imediato no registrador $t0
 	addi $t0, $zero, 2000
 	# adiciona a constante 10 utilizando soma de imediato no registrador $t1
-	addi,$t1, $zero, 10
+	addi $t1, $zero, 10
 	# realiza a multiplicação do conteúdo dos registradores $t0 e $t1 e adiciona nos registradores low e high
 	mult $t0, $t1
 	# move o conteúdo do registrador low para o registrador $s0

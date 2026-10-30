@@ -4,75 +4,34 @@
 # -------- CÓDIGO EM ASSEMBLY QUE VERIFICA MATRÍCULAS DE ALUNOS REGISTRADAS NO SISTEMA --------
 
 .data
-	# armazenando uma string que solicita ao usuário para digitar a sua matrícula
-	solicita_matricula: .asciiz "Digite sua matrícula: "
-	
-	# armazenando strings que informa ao usuário que a matrícula digitada não foi encontrada
+	# texto usado para identificar o registro de demonstração
+	solicita_matricula: .asciiz "Digite uma matrícula de 9 dígitos (0 para sair): "
+	credenciais_demonstracao1: .asciiz "Registro de demonstração: "
+	credenciais_demonstracao2: .asciiz ", matrícula "
+
 	matricula_nao_encontrada1: .asciiz "A matrícula "
 	matricula_nao_encontrada2: .asciiz " não foi encontrada."
-	
-	# armazenando strings que para informar que a matrícula encontrada pertence a Alysson Machado
-	minhas_credenciais1: .asciiz "Sou eu! Eu sou "
-	minhas_credenciais2: .asciiz ", e tenho matrícula "
-	
-	# armazenando strings para informar que a matrícula digitada foi encontrada no sistema
 	matricula_encontrada1: .asciiz "A matrícula "
 	matricula_encontrada2: .asciiz " corresponde ao aluno "
-	
-	# armazenando uma string que tem o efeito de pular a linha de um texto exibido na tela
 	pula_linha: .asciiz "\n"
-	
-	# armazenando um número inteiro para verificar posteriormente se a matrícula informada pelo usuário é composta de zeros
-	zero_matricula: .word 0x0
-	# armazenando um número em hexadecimal que vai auxiliar na conversão de hexadecimal para decimal
+
+	.align 2
+	zero_matricula: .word 0
 	auxiliar_conversor: .word 0x0000000F
-	
-	# armazenando em formato hexadecimal a matrícula de Alysson Machado
-	minha_matricula: .word 0x19110236
-	# armazenando em formato de string nome de Alysson Machado
-	meu_nome: .asciiz "ALYSSON MACHADO DE OLIVEIRA BARBOSA"
-	
-	# armazenando o nome dos alunos em strings de tamanhos constantes
-	nomes: .asciiz "ADEILSON DE SOUSA LEAL                       ", "AIRON CIRILO GUENES FILHO                    ", 
-	               "ANDERSON MARCOS SILVA                        ", "ANDREY LUCYAN NASCIMENTO PAIVA               ", 
-	               "BARBARA BEZERRA BARBOSA                      ", "BRUNO NASCIMENTO GOMES DE OLIVEIRA           ", 
-	               "CAIO VASCONCELOS BENIGNO DE ABRANTES         ", "CLEISSON DE ALENCAR RAMOS                    ", 
-	               "DAVI AUGUSTO MONTEIRO GONZAGA                ", "DEBORA DA SILVA COSTA                        ", 
-	               "DIEGO ALMEIDA DIAS                           ", "DOUGLAS BARROS CALISTA                       ", 
-	               "EDGLEY DA SILVA CARVALHO FILHO               ", "EDUARDO LUIS FERREIRA BARBOSA                ", 
-	               "EUDES MEDEIROS                               ", "FABIO VICTOR GALDINO NASCIMENTO              ", 
-	               "FELIPE ALEXANDRE DA SILVA BENTO              ", "FELIPE LUCENA SOUZA MEDEIROS                 ", 
-	               "FERNANDO HENRIQUE DE SOUSA SILVA             ", "FILIPE JOSE FERREIRA DE ARAUJO               ", 
-	               "FRANCINILDO BARBOSA FIGUEIREDO               ", "HEBERT SANTOS CRISPIM                        ", 
-	               "HELSON JADER ROCHA                           ", "HIGOR COSTA DE OLIVEIRA                      ", 
-	               "IGOR COSTA XAVIER                            ", "IURY CHAGAS DA SILVA CAETANO                 ", 
-	               "JACKSON DA SILVA GUEDES                      ", "JANIELE PEREIRA BENICIO                      ", 
-	               "JESSYCA DAYANE SOUSA BRANDAO                 ", "JOSE HELIO DE ARAUJO JUNIOR                  ", 
-	               "JOSE TAYRONE SANTOS DE OLIVEIRA              ", "JULIA RAMALHO COSTA SOUZA                    ", 
-	               "KAYO MATHEUS ARAUJO SANTOS                   ", "LAVNIS OLIVEIRA DE ARAUJO                    ", 
-	               "LEIRY GABRIELLE MARQUES LUZ PINTO            ", "LEONARDO PESSOA BANDEIRA LACERDA             ", 
-	               "LINDEMBERG COSTA LUNA                        ", "LUCAS ALLYSON HERMINIO SOUSA                 ", 
-	               "LUCAS CARMO PASCHOAL                         ", "LUCAS DE OLIVEIRA LOBO                       ", 
-	               "LUCAS HENRIQUE ANDRADE VILA NOVA             ", "MARCUS VINICIUS COSTA PEREIRA                ", 
-	               "MARIA THEREZA GOMES DO NASCIMENTO ROQUE      ", "MICAEL ESPINOLA FONSECA TOMAZ                ", 
-	               "MOISES DE ARAUJO OLIVEIRA                    ", "PEDRO HENRIQUE FERNANDES MACEDO              ", 
-	               "PEDRO LIRA BANDEIRA                          ", "RAFAEL SA BENIGNO                            ", 
-	               "RAFAELA TAVARES MARTINS                      ", "ROGERIO MOREIRA ALMEIDA                      ", 
-	               "ROSMANYA MARLLA FIALHO DE LIMA FONSECA       ", "SABRINA ARAUJO CARDOSO                       ", 
-	               "SAMARA LIMA CARDOSO                          ", "TULIO RAFAEL DE AGUIAR TAVARES               ", 
-	               "UBIRAJARA POSSIANO DA SILVA FILHO            ", "VITOR TRINDADE ROCHA RIBEIRO                 ", 
-	               "VITORIA JAMILLE GONCALVES DE OLIVEIRA NOBREGA", "WALISSON MAXIMINO MESSIAS                    ", 
-	               "WILLIAM HENRIQUE AZEVEDO MARTINS             "
-        
-        # armazenando as matrículas dos alunos em formato hexadecimal
-	matriculas: .word 0x20111766, 0x19110394, 0x19111026, 0x19110324, 0x20210674, 0x19110386, 0x18110269, 0x20110520, 
-			  0x20111601, 0x18210553, 0x19110420, 0x19111418, 0x19110904, 0x18110318, 0x18210651, 0x19110524, 
-			  0x19111014, 0x19110191, 0x19111664, 0x18210469, 0x19111299, 0x19110929, 0x19111150, 0x19210570, 
-			  0x19110421, 0x19110734, 0x18210809, 0x22111275, 0x18110402, 0x18210499, 0x22110406, 0x19110177, 
-			  0x20110415, 0x20111610, 0x20111401, 0x19110415, 0x19210861, 0x20111044, 0x21111310, 0x19110030, 
-			  0x20110266, 0x19111203, 0x17210743, 0x19110376, 0x19110390, 0x20210121, 0x19110779, 0x19110423, 
-			  0x18111101, 0x21110599, 0x19111090, 0x18210114, 0x19110785, 0x20110898, 0x20210436, 0x19110104
-			  0x20210601, 0x21111274, 0x19111128	
+
+	# Dados inteiramente fictícios para demonstração.
+	matricula_destaque: .word 0x98765432
+	nome_destaque: .asciiz "ALUNO DE DEMONSTRACAO"
+
+	# Cada matrícula está associada a um ponteiro para o nome correspondente.
+	.align 2
+	matriculas: .word 0x23456789, 0x98765432, 0x23450001, 0x34567890
+	nomes: .word nome_ana, nome_aluno, nome_bruno, nome_carla
+	nome_ana: .asciiz "ANA EXEMPLO"
+	nome_aluno: .asciiz "ALUNO DE DEMONSTRACAO"
+	nome_bruno: .asciiz "BRUNO EXEMPLO"
+	nome_carla: .asciiz "CARLA EXEMPLO"
+
 .text	
 	# função principal do programa
 	main:
@@ -88,8 +47,8 @@
 			jal contaDigitosMatricula
 			# chamada da função que verifica se o primeiro dígito da matrícula informada é o número 1
 			jal verificaPrimeiroDigito
-			# chamada da função para verificar se a matrícula informada corresponde a minha matrícula
-			jal verificaMinhaMatricula
+			# chamada da função para verificar se a matrícula informada corresponde ao registro de demonstração
+			jal verificaMatriculaDestaque
 			# chamada da função que verifica se a matrícula digitada corresponde as matrículas cadastradas
 			jal ProcuraMatricula
 			# pula para a linha de código que mantém o programa executando até o usuário sair do programa
@@ -113,7 +72,7 @@
 	# função secundária para solicitar ao usuário que seja impresso uma matrícula na tela
 	recebeMatricula:
 		# comando para solicitar ao usuário que seja digitado um número inteiro na tela
-		li $v0 5
+		li $v0, 5
 		# chamada do sistema para executar o comando armazenado no registrador $v0
 		syscall
 		
@@ -183,13 +142,14 @@
 			# divide o conteúdo do registrador $s2 por $s0 e armazena no própio $s2
 			div $s2, $s2, $s0
 			# incrementa o registrador $s1 para contar a qwuantidade de dígitos
-			add $s1, $s1, 1
+			addi $s1, $s1, 1
 			# caso o conteúdo de $s2 seja um valor zero, não sobre mais nada pela divisão, finaliza o loop
-			bne $s2, 0, loop_contador
+			bne $s2, $zero, loop_contador
 		
 		# verifica se o contador armazenado no registrador $s1 é diferente de 9 dígitos, caso verdade,
 		# pula para executar a função "exibeMatriculaNaoEncontrada"
-		bne $s1, 9, exibeMatriculaNaoEncontrada
+		li $t9, 9
+		bne $s1, $t9, exibeMatriculaNaoEncontrada
 		
 		# comando para encerrar a função 
 		jr $ra
@@ -206,7 +166,8 @@
 		mflo $s1
 		
 		# caso o primeiro dígito da matrícula seja diferente de 1, executa a função "exibeMatriculaNaoEncontrada"
-		bne $s1, 1, exibeMatriculaNaoEncontrada
+		li $t9, 1
+		bne $s1, $t9, exibeMatriculaNaoEncontrada
 		
 		# comando para encerrar a função
 		jr $ra
@@ -253,26 +214,27 @@
 			# soma no registrador de conversão final $t2 o dígito capturado do número em hexa
 			add $t2, $t2, $t6
 			# atualiza a precisão da casa decimal para somar com o próximo dígito a ser capturado
-			mul $t5, $t5, 10
+			li $t9, 10
+			mul $t5, $t5, $t9
 			# desloca para a esquerda o valor do auxiliar de conversor para capturar o próximo dígito
 			sll $t3, $t3, 4
 			# incrementa o contador de conversão de hexa para decimal
 			addi $t4, $t4, 1
 			# se o número do conversor auxiliar for diferente de zero, continuar a conversão até o final
-			bne $t3, 0, loop_conversao
+			bne $t3, $zero, loop_conversao
 		
 		# comando para encerrar a função
 		jr $ra
 	
-	# função secundária para verificar se a matrícula informada corresponde a mesma do autor do código
-	verificaMinhaMatricula:
+	# função secundária para verificar a matrícula do registro de demonstração
+	verificaMatriculaDestaque:
 		# utilizando registradores como uma pilha para armazenar informações temporárias
 		# mecanismo para fazer uma subrotina para que uma função seja utilizada dentro de outra
 		addi $sp, $sp, -4
 		sw $ra, 0($sp)
 		
 		# carrega no registrador $t0 o valor em hexadecimal com a minha matricula
-		lw $t0, minha_matricula($zero)
+		lw $t0, matricula_destaque($zero)
 		
 		# chamada da função como subrotina para converter o valor da minha matrícula em hexa para decimal
 		jal converteHexaDecimal
@@ -281,32 +243,32 @@
 		lw $ra, 0($sp)
 		addi $sp, $sp, 4
 		
-		# caso a matrícula informada for igual a minha matrícula, exibe as minhas credenciais
-		beq $t1, $t2, exibeMinhasCredenciais
+		# caso a matrícula corresponda ao registro de demonstração, exibe seus dados fictícios
+		beq $t1, $t2, exibeCredenciaisDemonstracao
 		
 		# chamada para encerrar a função
 		jr $ra	
 	
-	# função secundária para exibir minhas credenciais quando a matrícula informada for igual a minha matrícula
-	exibeMinhasCredenciais:
+	# função secundária para exibir os dados fictícios do registro de demonstração
+	exibeCredenciaisDemonstracao:
 		# comando para exibir uma string na tela
 		li $v0, 4
-		# manda o conteúdo de "minhas_credenciais1" para o contador $a0 para exibir na tela
-		la $a0, minhas_credenciais1
+		# manda o conteúdo de "credenciais_demonstracao1" para o contador $a0 para exibir na tela
+		la $a0, credenciais_demonstracao1
 		# chamada do sistema para executar a operação definida em $v0
 		syscall
 		
 		# comando para exibir uma string
 		li $v0, 4
-		# manda o conteúdo de "meu_nome" para o contador $a0 para exibir na tela
-		la $a0, meu_nome
+		# manda o conteúdo de "nome_destaque" para o contador $a0 para exibir na tela
+		la $a0, nome_destaque
 		# chamada do sistema para executar a operação definida em $v0
 		syscall
 		
 		# comando para exibir uma string na tela
 		li $v0, 4
-		# manda o conteúdo de "minhas_credenciais2" para o contador $a0 para exibir na tela
-		la $a0, minhas_credenciais2
+		# manda o conteúdo de "credenciais_demonstracao2" para o contador $a0 para exibir na tela
+		la $a0, credenciais_demonstracao2
 		# chamada do sistema para executar a operação definida em $v0
 		syscall
 		
@@ -355,9 +317,10 @@
 			# intera o registrador $s3 para carregar a próxima matrícula para verificação
 			addi $s3, $s3, 4
 			# intera o registrador $s4 para carregar o próximo nome de aluno cuja matrícula está em análise
-			addi $s4, $s4, 46
+			addi $s4, $s4, 4
 			# se o registrador $3 já inteirou com todas as matrículas, encerra o programa
-			bne $s3, 236, loop_procura_matricula
+			li $t9, 16
+			bne $s3, $t9, loop_procura_matricula
 			
 			# utilizando registradores como uma pilha para armazenar informações temporárias
 			# mecanismo para fazer uma subrotina para que uma função seja utilizada dentro de outra
@@ -399,7 +362,7 @@
 		# comando para exibir uma string na tela
 		li $v0, 4
 		# carrega o conteúdo do nome atual do aluno no registrador $a0 para exibir na tela
-		la $a0, nomes($s4)
+		lw $a0, nomes($s4)
 		syscall
 		
 		# comando para exibir uma string na tela

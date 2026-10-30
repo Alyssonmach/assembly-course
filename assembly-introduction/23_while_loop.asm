@@ -9,11 +9,12 @@
 	main:
 		# iniciando o contador do loop pelo registrador $t0
 		addi $t0, $zero, 0
+		addi $t1, $zero, 10
 		
 		# rótulo que vai definir o começo do bloco de código em loop
 		while:
-			# se $t0 for 10, executa a função exit
-			bgt $t0, 10, exit
+			# se $t0 ultrapassar 10, executa a função exit
+			bgt $t0, $t1, exit
 			# enquanto $t0 não for 10, executa a função que exibe o número na tela
 			jal printNumber
 			# incrementa o contador $t0 do loop
@@ -26,7 +27,7 @@
 		# comando que exibe uma string na tela
 		li $v0, 4
 		# exibe o conteúdo de "message" na tela
-		la, $a0, message
+		la $a0, message
 		# chamada do sistema para executar a operação em $v0
 		syscall
 		

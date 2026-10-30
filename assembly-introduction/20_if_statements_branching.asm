@@ -29,10 +29,10 @@
 		
 		# chamada da função para receber um número inteiro do usuário
 		jal inputInteger
-		# adicionando o conteúdo de $v0 no registrador $v1
-		move $t0, $v1
+		# armazenando o segundo número no registrador $t1
+		move $t1, $v0
 		
-		# se o conteúdo dos registradores $v0 e $v1 forem iguais, executar a função "displayEqualNumbers"
+		# se os números armazenados em $t0 e $t1 forem iguais, exibe a mensagem correspondente
 		beq $t0, $t1, displayEqualNumbers
 		# chamada da função que exibe uma mensagem quando os dois números são diferentes
 		jal displayDifferentNumbers

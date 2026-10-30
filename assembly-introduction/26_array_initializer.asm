@@ -1,34 +1,20 @@
-# código em assembly que percorre todo um array e exibe o seu conteúdo
+# código em assembly que percorre todo um array pré-definido e exibe o seu conteúdo
 
 .data
-	# definindo um array vazio
-	myArray: .space 12
+	# definindo um array com o conteúdo 100 armazenado em 3 slots de endereço distintos
+	myArray: .word 100:4
 	newLine: .asciiz "\n"
 	
 .text
 	main:
-		# registradores que armazenam conteúdos a serem adicionados no array
-		addi $s0, $zero, 4
-		addi $s1, $zero, 14
-		addi $s2, $zero, 24
-	
 		# inicializando o contador que vai acessar o endereço do array para a adição dos conteúdos
 		addi $t0, $zero, 0
-	
-		# adiciona o conteúdo dos registradores $s0, $s1 e $s2 no array vazio, incrementando os endereços via $t0
-		sw $s0, myArray($t0)
-		addi $t0, $t0, 4
-		sw $s1, myArray($t0)
-		addi $t0, $t0, 4
-		sw $s2, myArray($t0)
-		
-		# reinicia o contador do array para fazer a leitura do array
-		addi $t0, $zero, 0
+		addi $t1, $zero, 16
 		
 		# comando para iniciar um bloco de código em loop
 		while:
 			# se o contador $t0 chegar no final do array, encerra o programa
-			beq $t0, 12, exit
+			beq $t0, $t1, exit
 			# pega o conteúdo do array no endereço atual armazenado em $t0
 			lw $s3, myArray($t0)
 			

@@ -21,7 +21,7 @@
 	move $t0, $v0
 	
 	# comando para imprimir uma string na tela
-	li, $v0, 4
+	li $v0, 4
 	# adiciona o conteúdo de "message" no registrador $a0
 	la $a0, message
 	# chamado do sistema para executar a operação em $v0

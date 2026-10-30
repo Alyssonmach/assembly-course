@@ -6,8 +6,8 @@
 	
 .text
 	# comando para exibir um caractere na tela
-	li $v0, 4
-	# carrega o endereço da variável myCharacter no registrador $a0 para exibir o conteúdo na tela
-	la $a0, myCharacter
+	li $v0, 11
+	# carrega o caractere no registrador $a0
+	lb $a0, myCharacter
 	# fazendo a chamada do sistema para exibir o conteúdo na tela
 	syscall

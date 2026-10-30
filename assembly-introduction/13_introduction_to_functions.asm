@@ -12,7 +12,7 @@
 	# soma de imediado para adicionar a constante 5 ao registrador $s0
 	addi $s0, $zero, 5
 	# comando para exibir um número inteiro na tela
-	li, $v0, 1
+	li $v0, 1
 	# adiciona o número inteiro ao registrador $a0 para exibir o conteúdo na tela
 	add $a0, $zero, $s0
 	# chamada do sistema para executar a operação definida no registrador $v0
@@ -26,7 +26,7 @@
 	# definindo uma função secundária
 	displayMessage:
 		# comando para exibir uma string na tela
-		li, $v0, 4
+		li $v0, 4
 		# carregando o conteúdo armazenado em "message" no registrador $a0 para exibir na tela
 		la $a0, message
 		# chamada do sistema para executar a operação definida no registrador $vo

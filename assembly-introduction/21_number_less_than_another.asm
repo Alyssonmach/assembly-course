@@ -10,17 +10,11 @@
 		addi $t0, $zero, 400
 		addi $t1, $zero, 500
 		
-		# comparando se o dígito armazenado em $t0 é maior que o dígito em $t1, se verdade $s0 recebe zero
+		# compara $t0 com $t1: $s0 recebe 1 quando $t0 é menor
 		slt $s0, $t0, $t1
-		# chama a função que exibe a mensagem do dígito em $t0 ser maior que o dígito em $t1 caso $s0 seja zero
-		beq $s0, $zero, printMessage1
-		# caso contrário, exibe que o dígito em $t0 não é maior que o dígito em $t1
-		bne $s0, $zero, printMessage2
-		
-		# comando para encerrar a função
-		li $v0, 10
-		# chamada do sistema para executar a operação definida em $v0
-		syscall
+		# escolhe a mensagem conforme o resultado da comparação
+		beq $s0, $zero, printMessage2
+		j printMessage1
 	
 	# função secundária para exibir a mensagem se um dígito for menor que o outro
 	printMessage1:
@@ -30,6 +24,7 @@
 		la $a0, message1
 		# chamada do sistema para executar o comando definido em $v0
 		syscall
+		j exit
 	
 	# função secundária para exibir a mensagem se um dígito não for menor que o outro
 	printMessage2:
@@ -38,4 +33,8 @@
 		# comando para adicionar o conteúdo de "message2" no registrador $a0 para exibir na tela
 		la $a0, message2
 		# chamada do sistema para executar o comando definido em $v0
+		syscall
+
+	exit:
+		li $v0, 10
 		syscall

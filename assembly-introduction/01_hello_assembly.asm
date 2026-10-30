@@ -2,7 +2,7 @@
 
 .data
 	# O diretivo .asciiz é usado para indicar que a string deve ser armazenada na memória incluindo o caractere de nova linha
-	myMessage: .asciiz "Hello World| \n"
+	myMessage: .asciiz "Hello World!\n"
 
 .text
 	# comando para exibir uma string na tela
